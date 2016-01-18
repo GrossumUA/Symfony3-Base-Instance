@@ -1,0 +1,11 @@
+Application\UserBundle\Entity\User:
+    type: entity
+    table: user
+    repositoryClass: Application\UserBundle\Entity\Repository\UserRepository
+    id:
+        id:
+            type: integer
+            unsigned: true
+            id: true
+            generator:
+                strategy: IDENTITY
