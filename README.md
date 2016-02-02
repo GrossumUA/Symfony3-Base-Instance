@@ -1,6 +1,6 @@
-# Symfony2-Base-Instance
+# Symfony3-Base-Instance
 
-[![Build Status](https://travis-ci.org/GrossumUA/Symfony2-Base-Instance.svg?branch=develop)](https://travis-ci.org/GrossumUA/Symfony2-Base-Instance)
+[![Build Status](https://travis-ci.org/GrossumUA/Symfony3-Base-Instance.svg?branch=develop)](https://travis-ci.org/GrossumUA/Symfony3-Base-Instance)
 
-Basic Symfony2 instance with user registration/authorization, few entities and base admin panel.
+Basic Symfony3 instance with user registration/authorization, few entities and base admin panel.
 
