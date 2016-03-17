@@ -18,3 +18,6 @@ services:
             - ~
         calls:
             - [ setUserManager, ['@application_user.user.manager']]
+
+    fos_user.doctrine_registry:
+        alias: doctrine

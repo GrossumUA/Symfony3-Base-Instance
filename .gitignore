@@ -1,5 +1,6 @@
 .idea
 .vagrant
+/htdocs/app/config/build.properties
 /htdocs/app/config/parameters.yml
 /htdocs/build/
 /htdocs/phpunit.xml
