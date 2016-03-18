@@ -25,6 +25,7 @@ Vagrant::configure("2") do |config|
 
   config.vm.network :private_network, ip: "#{vmData['network_ip']}"
 
+  config.ssh.pty = true
   config.vm.provision :shell, path: "shell/start.sh"
   config.vm.provision :shell, path: "shell/mysql.sh", args: ["#{mysqlData['root_password']}"]
   config.vm.provision :shell, path: "shell/nginx.sh", args: ["#{vmData['host_name']}", "#{vmData['synced_folder_to']}"]

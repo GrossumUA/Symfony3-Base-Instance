@@ -2,11 +2,13 @@
 
 namespace Application\UserBundle\Entity\EntityManager;
 
-use FOS\UserBundle\Doctrine\UserManager as BaseUserManager;
+use Doctrine\ORM\EntityManager;
 
 /**
  * Class UserManager
+ *
+ * @package Application\UserBundle\EntityManager
  */
-class UserManager extends BaseUserManager
+class UserManager extends EntityManager
 {
 }

@@ -1,0 +1,16 @@
+{% extends "SonataAdminBundle::empty_layout.html.twig" %}
+{% block body_attributes %}class="sonata-bc login-page"{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+        .login-page, .register-page {
+            background: #d2d6de;
+        }
+    </style>
+{% endblock %}
+{% block sonata_wrapper %}
+    <div>
+        {% block fos_user_content %}
+        {% endblock fos_user_content %}
+    </div>
+{% endblock sonata_wrapper %}
