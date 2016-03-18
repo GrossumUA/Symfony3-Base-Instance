@@ -1,0 +1,15 @@
+label.user : User
+group.user: Users
+id: ID
+username : Username
+email : Email
+password: Password
+enabled: Enabled
+locked: Locked
+User List: User list
+User Create: User create
+contains: contains
+does not contain: does not contain
+is equal to : is equal to
+logout: Logout
+

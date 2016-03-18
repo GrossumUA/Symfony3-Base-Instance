@@ -5,7 +5,9 @@ namespace Application\UserBundle\Entity\Repository;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * UserRepository
+ * Class UserRepository
+ *
+ * @package Application\UserBundle\Entity\Repository
  */
 class UserRepository extends EntityRepository
 {
