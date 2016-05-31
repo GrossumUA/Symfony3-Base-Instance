@@ -1,0 +1,30 @@
+services:
+    application_user.user.manager:
+        class: Application\UserBundle\Entity\EntityManager\UserManager
+        parent: fos_user.user_manager.default
+        public: true
+
+    sonata.admin.user:
+        class: Application\UserBundle\Admin\UserAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: group.user, label: label.user }
+        arguments:
+            - ~
+            - Application\UserBundle\Entity\User
+            - ~
+        calls:
+            - [ setUserManager, ['@application_user.user.manager']]
+
+    application.form.registration:
+        class: Application\UserBundle\Form\Type\RegistrationFormType
+        tags:
+            - { name: form.type, alias: application_user_registration }
+
+    application.registration.form:
+        factory: ['@form.factory', createNamed]
+        class: Symfony\Component\Form\Form
+        arguments:
+            - '%fos_user.registration.form.name%'
+            - '@application.form.registration'
+            - null
+            - validation_groups: '%fos_user.registration.form.validation_groups%'
