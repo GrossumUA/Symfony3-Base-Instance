@@ -6,7 +6,7 @@
 {% block body %}
     <div class="form-box" id="registration-box">
         <div class="header">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</div>
-        <form name="application_user_registration" method="POST" {{ form_enctype(form) }}>
+        {{ form_start(form) }}
             <div class="body bg-gray">
                 {% form_theme form 'bootstrap_3_layout.html.twig' %}
                 {{ form_widget(form) }}
@@ -16,6 +16,6 @@
             <div class="footer">
                 <button type="submit" id="_submit" name="_submit" class="btn bg-olive btn-block">{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}</button>
             </div>
-        </form>
+        {{ form_end(form) }}
     </div>
 {% endblock %}
