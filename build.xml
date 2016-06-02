@@ -20,18 +20,13 @@
             <filter token="database_name" value="${db.name}"/>
             <filter token="database_user" value="${db.user}"/>
             <filter token="database_password" value="${db.password}"/>
-            <filter token="database_driver" value="${db.driver}"/>
 
             <filter token="mailer_transport" value="${mailer.transport}"/>
             <filter token="mailer_host" value="${mailer.host}"/>
             <filter token="mailer_user" value="${mailer.user}"/>
             <filter token="mailer_password" value="${mailer.password}"/>
 
-            <filter token="app_locale" value="${app.locale}"/>
             <filter token="app_secret" value="${app.secret}"/>
-            <filter token="app_debug_toolbar" value="${app.debug_toolbar}"/>
-            <filter token="app_debug_redirects" value="${app.debug_redirects}"/>
-            <filter token="app_use_assetic_controller" value="${app.use_assetic_controller}"/>
 
         </filterset>
 
@@ -50,18 +45,13 @@
             <filter token="database_name" value="${db.test.name}"/>
             <filter token="database_user" value="${db.test.user}"/>
             <filter token="database_password" value="${db.test.password}"/>
-            <filter token="database_driver" value="${db.test.driver}"/>
 
             <filter token="mailer_transport" value="${mailer.transport}"/>
             <filter token="mailer_host" value="${mailer.host}"/>
             <filter token="mailer_user" value="${mailer.user}"/>
             <filter token="mailer_password" value="${mailer.password}"/>
 
-            <filter token="app_locale" value="${app.locale}"/>
             <filter token="app_secret" value="${app.secret}"/>
-            <filter token="app_debug_toolbar" value="${app.debug_toolbar}"/>
-            <filter token="app_debug_redirects" value="${app.debug_redirects}"/>
-            <filter token="app_use_assetic_controller" value="${app.use_assetic_controller}"/>
 
         </filterset>
 
