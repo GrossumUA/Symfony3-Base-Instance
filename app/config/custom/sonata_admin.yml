@@ -5,3 +5,8 @@ sonata_block:
             contexts: [admin]
         sonata.admin.block.search_result:
             contexts: [admin]
+
+sonata_admin:
+    templates:
+            layout:     ApplicationSonataAdminBundle::standard_layout_override.html.twig
+            user_block: ApplicationSonataAdminBundle:Core:user_block.html.twig
