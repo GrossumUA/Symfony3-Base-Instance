@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Sonata\AdminBundle\Tests\Functional;
+namespace Tests\Application\Sonata\AdminBundle\Functional;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
@@ -9,7 +9,7 @@ use Symfony\Component\HttpKernel\Client;
 
 abstract class AbstractLoginTest extends WebTestCase
 {
-    const LOGIN_BUTTON = 'Login';
+    const LOGIN_BUTTON = 'Log in';
     const LOGIN_URL = '/admin/login';
     const PASSWORD = 'admin';
     const PASSWORD_FIELD = '_password';

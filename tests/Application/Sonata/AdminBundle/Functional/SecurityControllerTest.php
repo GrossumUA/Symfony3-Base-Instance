@@ -1,12 +1,6 @@
 <?php
 
-namespace Application\Sonata\AdminBundle\Tests\Controller;
-
-use Symfony\Bundle\FrameworkBundle\Client;
-use Symfony\Component\DomCrawler\Crawler;
-use Symfony\Component\DomCrawler\Form;
-
-use Application\Sonata\AdminBundle\Tests\Functional\AbstractLoginTest;
+namespace Tests\Application\Sonata\AdminBundle\Functional;
 
 class SecurityControllerTest extends AbstractLoginTest
 {
@@ -15,6 +9,8 @@ class SecurityControllerTest extends AbstractLoginTest
 
     /**
      * @dataProvider dataProviderInvalidCredentials
+     * @param string $username
+     * @param string $password
      */
     public function testLoginFail($username, $password)
     {

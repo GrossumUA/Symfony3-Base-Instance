@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Sonata\AdminBundle\Tests\Controller;
+namespace Tests\Application\Sonata\AdminBundle\Functional;
 
 use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
@@ -13,7 +13,7 @@ class RegistrationControllerTest extends WebTestCase
     const ERROR_SELECTOR = '.has-error .help-block li';
     const EMAIL_FIELD = 'fos_user_registration_form[email]';
     const EMPTY_USERNAME_ERROR = ' Please enter a username';
-    const REGISTRATION_URL = '/register';
+    const REGISTRATION_URL = '/register/';
     const INVALID_CREDENTIALS = 'Invalid credentials.';
     const PASSWORD_FIELD = 'fos_user_registration_form[plainPassword][first]';
     const REPEAT_PASSWORD_FIELD = 'fos_user_registration_form[plainPassword][second]';
@@ -48,6 +48,11 @@ class RegistrationControllerTest extends WebTestCase
 
     /**
      * @dataProvider dataProviderInvalidCredentials
+     * @param string $username
+     * @param string $email
+     * @param string $password
+     * @param string $repeatPassword
+     * @param int $countErrors
      */
     public function testRegistrationFail($username, $email, $password, $repeatPassword, $countErrors)
     {
