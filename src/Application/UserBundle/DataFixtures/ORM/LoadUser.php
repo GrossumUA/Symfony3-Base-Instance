@@ -46,28 +46,53 @@ class LoadUser extends AbstractFixture implements FixtureInterface, ContainerAwa
      */
     public function load(ObjectManager $manager)
     {
-        $this->createAdminUser($manager);
+        $usersData = [
+            [
+                'email'    => 'admin@admin.com',
+                'password' => 'admin',
+                'username' => 'admin',
+                'roles'    => ['ROLE_SUPER_ADMIN'],
+            ],
+            [
+                'email'    => 'user@user.com',
+                'password' => 'user',
+                'username' => 'user',
+                'roles'    => ['ROLE_USER'],
+            ],
+        ];
+
+        foreach ($usersData as $userData) {
+            $this->createUser(
+                $userData['email'],
+                $userData['password'],
+                $userData['username'],
+                $userData['roles']
+            );
+        }
     }
 
     /**
-     * @param ObjectManager $manager
+     * @param string $email
+     * @param string $password
+     * @param string $userName
+     * @param array $roles
      * @return User
      */
-    private function createAdminUser(ObjectManager $manager)
-    {
-        $adminEmail = 'admin@admin.com';
-        $adminPassword = 'admin';
-        $adminUserName = 'admin';
-
+    private function createUser(
+        $email,
+        $password,
+        $userName,
+        array $roles
+    ) {
         $userManager = $this->getUserManager();
 
         /** @var User $user */
         $user = $userManager->createUser();
-        $user->setUsername($adminUserName)
-            ->setEmail($adminEmail)
-            ->setPlainPassword($adminPassword)
+        $user->setUsername($userName)
+            ->setEmail($email)
+            ->setPlainPassword($password)
             ->setEnabled(true)
-            ->setRoles(['ROLE_SUPER_ADMIN']);
+            ->setRoles($roles);
 
         $userManager->updateUser($user);
 
