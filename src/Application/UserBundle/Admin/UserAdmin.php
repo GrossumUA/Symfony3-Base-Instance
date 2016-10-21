@@ -2,14 +2,19 @@
 
 namespace Application\UserBundle\Admin;
 
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\CoreBundle\Validator\ErrorElement;
 
 use Application\UserBundle\Entity\EntityManager\UserManager;
 use Application\UserBundle\Entity\User;
+use Symfony\Component\VarDumper\VarDumper;
 
 class UserAdmin extends AbstractAdmin
 {
@@ -23,22 +28,36 @@ class UserAdmin extends AbstractAdmin
     /**
      * {@inheritdoc}
      */
+    public function getFormBuilder()
+    {
+        $this->formOptions = array('validation_groups' => array('edit'));
+
+        if ($this->getSubject()->getId() === null) {
+            $this->formOptions = array('validation_groups' => array('create'));
+        }
+
+        return parent::getFormBuilder();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('username', null, ['label' => 'Username', 'required' => true])
-            ->add('email', 'email', ['label' => 'Email', 'required' => true])
+            ->add('username', TextType::class, ['label' => 'Username'])
+            ->add('email', EmailType::class, ['label' => 'Email'])
             ->add(
                 'plainPassword',
-                'password',
+                PasswordType::class,
                 [
-                    'label' => 'Password',
+                    'label'        => 'Password',
                     'always_empty' => true,
-                    'required' => ($this->getSubject() && $this->getSubject()->getId())? false : true
+                    'required'     => $this->getSubject()->getId() ? false : true
                 ]
             )
-            ->add('enabled', null, ['label' => 'Enabled', 'required' => false])
-            ->add('locked', null, ['label' => 'Locked', 'required' => false]);
+            ->add('enabled', CheckboxType::class, ['label' => 'Enabled', 'required' => false])
+            ->add('locked', CheckboxType::class, ['label' => 'Locked', 'required' => false]);
     }
 
     /**
@@ -59,16 +78,16 @@ class UserAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('id')
-            ->add('email')
+            ->addIdentifier('email')
             ->add('username')
             ->add('enabled')
             ->add('locked')
             ->add('_action', 'actions', [
-                    'actions' => [
-                        'edit' => [],
-                    ],
-             ]);
+                'actions' => [
+                    'edit'   => [],
+                    'delete' => [],
+                ],
+            ]);
     }
 
     /**
@@ -88,30 +107,6 @@ class UserAdmin extends AbstractAdmin
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function validate(ErrorElement $errorElement, $object)
-    {
-        $userByEmail = $this->userManager->findUserByEmail($object->getEmail());
-
-        if ($userByEmail && $userByEmail->getId() !== $object->getId()) {
-            $errorElement
-                ->with('email')
-                ->addViolation('Email already exist')
-                ->end();
-        }
-
-        $userByUsername = $this->userManager->findUserByUsername($object->getUsername());
-
-        if ($userByUsername && $userByUsername->getId() != $object->getId()) {
-            $errorElement
-                ->with('username')
-                ->addViolation('Username already exist')
-                ->end();
-        }
-    }
-
-    /**
      * @param UserManager $userManager
      */
     public function setUserManager(UserManager $userManager)
@@ -127,6 +122,7 @@ class UserAdmin extends AbstractAdmin
         if ($user->getPlainPassword()) {
             $this->userManager->updatePassword($user);
         }
+
         if (!$user->hasRole(static::ROLE_ADMIN)) {
             $user->addRole(static::ROLE_ADMIN);
         }

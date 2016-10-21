@@ -5,20 +5,29 @@ namespace Application\UserBundle\DataFixtures\ORM;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 
-use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
+use FOS\UserBundle\Model\UserInterface;
+
 use Application\UserBundle\Entity\EntityManager\UserManager;
 use Application\UserBundle\Entity\User;
 
-class LoadUser extends AbstractFixture implements FixtureInterface, ContainerAwareInterface, OrderedFixtureInterface
+class LoadUser implements FixtureInterface, ContainerAwareInterface, OrderedFixtureInterface
 {
-    /** @var UserManager */
+    const ADMIN_LOGIN = 'admin';
+    const ADMIN_EMAIL = 'admin@admin.com';
+    const ADMIN_PASSWORD = 'admin';
+
+    /**
+     * @var UserManager
+     */
     protected $userManager;
 
-    /** @var ContainerInterface */
+    /**
+     * @var ContainerInterface
+     */
     private $container;
 
     /**
@@ -46,28 +55,24 @@ class LoadUser extends AbstractFixture implements FixtureInterface, ContainerAwa
      */
     public function load(ObjectManager $manager)
     {
-        $this->createAdminUser($manager);
+        $this->createAdminUser();
     }
 
     /**
-     * @param ObjectManager $manager
      * @return User
      */
-    private function createAdminUser(ObjectManager $manager)
+    private function createAdminUser()
     {
-        $adminEmail = 'admin@admin.com';
-        $adminPassword = 'admin';
-        $adminUserName = 'admin';
-
         $userManager = $this->getUserManager();
 
         /** @var User $user */
         $user = $userManager->createUser();
-        $user->setUsername($adminUserName)
-            ->setEmail($adminEmail)
-            ->setPlainPassword($adminPassword)
+        $user
+            ->setUsername(self::ADMIN_LOGIN)
+            ->setEmail(self::ADMIN_EMAIL)
+            ->setPlainPassword(self::ADMIN_PASSWORD)
             ->setEnabled(true)
-            ->setRoles(['ROLE_SUPER_ADMIN']);
+            ->setRoles([UserInterface::ROLE_SUPER_ADMIN]);
 
         $userManager->updateUser($user);
 
