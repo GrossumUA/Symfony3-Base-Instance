@@ -1,0 +1,11 @@
+application_sonata_admin_security_login:
+    path:     /login
+    defaults: { _controller: ApplicationSonataAdminBundle:Security:login }
+
+application_sonata_admin_security_check:
+    path:     /login_check
+    defaults: { _controller: ApplicationSonataAdminBundle:Security:check }
+
+application_sonata_admin_security_logout:
+    path:     /logout
+    defaults: { _controller: ApplicationSonataAdminBundle:Security:logout }

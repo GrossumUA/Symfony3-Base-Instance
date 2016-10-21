@@ -1,0 +1,12 @@
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts: [admin]
+        sonata.admin.block.search_result:
+            contexts: [admin]
+
+sonata_admin:
+    templates:
+            layout:     ApplicationSonataAdminBundle::standard_layout_override.html.twig
+            user_block: ApplicationSonataAdminBundle:Core:user_block.html.twig
