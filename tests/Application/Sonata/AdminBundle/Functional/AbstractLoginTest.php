@@ -4,7 +4,7 @@ namespace Tests\Application\Sonata\AdminBundle\Functional;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\DomCrawler\Crawler;
-use Symfony\Component\Form\Form;
+use Symfony\Component\DomCrawler\Form;
 use Symfony\Component\HttpKernel\Client;
 
 abstract class AbstractLoginTest extends WebTestCase

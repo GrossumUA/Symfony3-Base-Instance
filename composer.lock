@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "56a1a16b88041b7a050e8e51a63ff958",
-    "content-hash": "fe06e21fe5811752e58a10d158893b57",
+    "hash": "75079155624372883ce099c61dba3f15",
+    "content-hash": "4b5313271216d3e65b51d644e38c1be3",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -961,12 +961,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSUserBundle.git",
-                "reference": "47df1eba2fadacb150b3c1cf35ff5866341a9d34"
+                "reference": "b059b674f2db78452e1c8c154afa0a79da5fc30c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/47df1eba2fadacb150b3c1cf35ff5866341a9d34",
-                "reference": "47df1eba2fadacb150b3c1cf35ff5866341a9d34",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSUserBundle/zipball/b059b674f2db78452e1c8c154afa0a79da5fc30c",
+                "reference": "b059b674f2db78452e1c8c154afa0a79da5fc30c",
                 "shasum": ""
             },
             "require": {
@@ -1030,7 +1030,7 @@
             "keywords": [
                 "User management"
             ],
-            "time": "2016-10-20 08:27:57"
+            "time": "2016-10-21 07:58:50"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -1635,16 +1635,16 @@
         },
         {
             "name": "sonata-project/admin-bundle",
-            "version": "3.1.0",
+            "version": "3.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "53850de35eb88ebadeb21ad09487d9edfcd357ed"
+                "reference": "75a8c1d8ef1ced56d50d4ce5a188d5f7843ca2c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/53850de35eb88ebadeb21ad09487d9edfcd357ed",
-                "reference": "53850de35eb88ebadeb21ad09487d9edfcd357ed",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/75a8c1d8ef1ced56d50d4ce5a188d5f7843ca2c5",
+                "reference": "75a8c1d8ef1ced56d50d4ce5a188d5f7843ca2c5",
                 "shasum": ""
             },
             "require": {
@@ -1652,8 +1652,8 @@
                 "doctrine/inflector": "^1.0",
                 "knplabs/knp-menu-bundle": "^2.1.1",
                 "php": "^5.3 || ^7.0",
-                "sonata-project/block-bundle": "^3.0",
-                "sonata-project/core-bundle": "^3.0",
+                "sonata-project/block-bundle": "^3.2",
+                "sonata-project/core-bundle": "^3.1",
                 "sonata-project/exporter": "^1.0",
                 "symfony/class-loader": "^2.3 || ^3.0",
                 "symfony/config": "^2.3.9 || ^3.0",
@@ -1678,6 +1678,7 @@
             },
             "require-dev": {
                 "jms/di-extra-bundle": "^1.7",
+                "jms/translation-bundle": "^1.2",
                 "sensio/generator-bundle": "^2.3 || ^3.0",
                 "sllh/php-cs-fixer-styleci-bridge": "^2.0",
                 "sonata-project/intl-bundle": "^2.2.4",
@@ -1699,7 +1700,10 @@
             "autoload": {
                 "psr-4": {
                     "Sonata\\AdminBundle\\": ""
-                }
+                },
+                "exclude-from-classmap": [
+                    "Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1724,7 +1728,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2016-05-16 23:39:58"
+            "time": "2016-10-06 14:28:29"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -1938,16 +1942,16 @@
         },
         {
             "name": "sonata-project/doctrine-orm-admin-bundle",
-            "version": "3.0.5",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle.git",
-                "reference": "b1eb22c546dc9b7e38093bf382ea0c2f4ae57007"
+                "reference": "64caa9e72f11f532c5fe7c69b14884a0951a0a56"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/b1eb22c546dc9b7e38093bf382ea0c2f4ae57007",
-                "reference": "b1eb22c546dc9b7e38093bf382ea0c2f4ae57007",
+                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/64caa9e72f11f532c5fe7c69b14884a0951a0a56",
+                "reference": "64caa9e72f11f532c5fe7c69b14884a0951a0a56",
                 "shasum": ""
             },
             "require": {
@@ -1984,7 +1988,10 @@
             "autoload": {
                 "psr-4": {
                     "Sonata\\DoctrineORMAdminBundle\\": ""
-                }
+                },
+                "exclude-from-classmap": [
+                    "Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -2010,7 +2017,7 @@
                 "generator",
                 "sonata"
             ],
-            "time": "2016-07-05 14:17:35"
+            "time": "2016-10-04 12:09:21"
         },
         {
             "name": "sonata-project/exporter",
