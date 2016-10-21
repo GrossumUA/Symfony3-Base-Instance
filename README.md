@@ -1,4 +1,5 @@
-Symfony3-Base-Instance
-======================
+# Symfony3-Base-Instance
 
-A Symfony project created on January 17, 2016, 6:50 pm.
+[![Build Status](https://travis-ci.org/GrossumUA/Symfony3-Base-Instance.svg?branch=master)](https://travis-ci.org/GrossumUA/Symfony3-Base-Instance)
+
+Basic Symfony3 instance with user registration/authorization, few entities and base admin panel.
