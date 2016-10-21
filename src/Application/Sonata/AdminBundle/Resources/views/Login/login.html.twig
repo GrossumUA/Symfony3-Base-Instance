@@ -7,7 +7,7 @@
 {% block body %}
     <div class="form-box" id="login-box">
         <div class="header">{{ 'security.login.label'|trans({}, 'ApplicationSonataAdminBundle') }}</div>
-        <form action="{{ path("fos_user_security_check") }}" method="post" role="form">
+        <form action="{{ path("application_sonata_admin_security_check") }}" method="post" role="form">
             <div class="body bg-gray">
                 {% if error %}
                     <div class="alert alert-danger alert-error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>

@@ -1,4 +1,5 @@
-{% extends 'ApplicationUserBundle::layout.html.twig' %}
+{% extends 'ApplicationSonataAdminBundle::not_sign_in_layout.html.twig' %}
+
 {% block title %}
     {{ 'layout.register'|trans({}, 'FOSUserBundle') }}
 {% endblock %}
@@ -10,7 +11,7 @@
             <div class="body bg-gray">
                 {% form_theme form 'bootstrap_3_layout.html.twig' %}
                 {{ form_widget(form) }}
-                <a href="{{ path('application_sonata_admin_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                <a href="{{ path('application_sonata_admin_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
             </div>
 
             <div class="footer">

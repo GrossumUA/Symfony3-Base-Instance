@@ -55,24 +55,53 @@ class LoadUser implements FixtureInterface, ContainerAwareInterface, OrderedFixt
      */
     public function load(ObjectManager $manager)
     {
-        $this->createAdminUser();
+        $usersData = [
+            [
+                'email'    => 'admin@admin.com',
+                'password' => 'admin',
+                'username' => 'admin',
+                'roles'    => [UserInterface::ROLE_SUPER_ADMIN],
+            ],
+            [
+                'email'    => 'user@user.com',
+                'password' => 'user',
+                'username' => 'user',
+                'roles'    => ['ROLE_USER'],
+            ],
+        ];
+
+        foreach ($usersData as $userData) {
+            $this->createUser(
+                $userData['email'],
+                $userData['password'],
+                $userData['username'],
+                $userData['roles']
+            );
+        }
     }
 
     /**
+     * @param string $email
+     * @param string $password
+     * @param string $userName
+     * @param array $roles
      * @return User
      */
-    private function createAdminUser()
-    {
+    private function createUser(
+        $email,
+        $password,
+        $userName,
+        array $roles
+    ) {
         $userManager = $this->getUserManager();
 
         /** @var User $user */
         $user = $userManager->createUser();
-        $user
-            ->setUsername(self::ADMIN_LOGIN)
-            ->setEmail(self::ADMIN_EMAIL)
-            ->setPlainPassword(self::ADMIN_PASSWORD)
+        $user->setUsername($userName)
+            ->setEmail($email)
+            ->setPlainPassword($password)
             ->setEnabled(true)
-            ->setRoles([UserInterface::ROLE_SUPER_ADMIN]);
+            ->setRoles($roles);
 
         $userManager->updateUser($user);
 

@@ -10,8 +10,9 @@ _sonata_admin:
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
-application_admin:
+application_sonata_admin:
     resource: "@ApplicationSonataAdminBundle/Resources/config/routing.yml"
+    prefix: /admin
 
 app:
     resource: "@AppBundle/Controller/"
