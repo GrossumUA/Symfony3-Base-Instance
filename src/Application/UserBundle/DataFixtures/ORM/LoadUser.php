@@ -12,13 +12,23 @@ use Doctrine\Common\Persistence\ObjectManager;
 use FOS\UserBundle\Model\UserInterface;
 
 use Application\UserBundle\Entity\EntityManager\UserManager;
-use Application\UserBundle\Entity\User;
 
 class LoadUser implements FixtureInterface, ContainerAwareInterface, OrderedFixtureInterface
 {
-    const ADMIN_LOGIN = 'admin';
-    const ADMIN_EMAIL = 'admin@admin.com';
-    const ADMIN_PASSWORD = 'admin';
+    private static $usersData = [
+        [
+            'email'    => 'admin@admin.com',
+            'password' => 'admin',
+            'username' => 'admin',
+            'roles'    => [UserInterface::ROLE_SUPER_ADMIN],
+        ],
+        [
+            'email'    => 'user@user.com',
+            'password' => 'user',
+            'username' => 'user',
+            'roles'    => [UserInterface::ROLE_DEFAULT],
+        ],
+    ];
 
     /**
      * @var UserManager
@@ -55,57 +65,19 @@ class LoadUser implements FixtureInterface, ContainerAwareInterface, OrderedFixt
      */
     public function load(ObjectManager $manager)
     {
-        $usersData = [
-            [
-                'email'    => 'admin@admin.com',
-                'password' => 'admin',
-                'username' => 'admin',
-                'roles'    => [UserInterface::ROLE_SUPER_ADMIN],
-            ],
-            [
-                'email'    => 'user@user.com',
-                'password' => 'user',
-                'username' => 'user',
-                'roles'    => ['ROLE_USER'],
-            ],
-        ];
-
-        foreach ($usersData as $userData) {
-            $this->createUser(
-                $userData['email'],
-                $userData['password'],
-                $userData['username'],
-                $userData['roles']
-            );
-        }
-    }
-
-    /**
-     * @param string $email
-     * @param string $password
-     * @param string $userName
-     * @param array $roles
-     * @return User
-     */
-    private function createUser(
-        $email,
-        $password,
-        $userName,
-        array $roles
-    ) {
         $userManager = $this->getUserManager();
 
-        /** @var User $user */
-        $user = $userManager->createUser();
-        $user->setUsername($userName)
-            ->setEmail($email)
-            ->setPlainPassword($password)
-            ->setEnabled(true)
-            ->setRoles($roles);
+        foreach (self::$usersData as $userData) {
+            $user = $userManager
+                ->createUser()
+                ->setUsername($userData['username'])
+                ->setEmail($userData['email'])
+                ->setPlainPassword($userData['password'])
+                ->setEnabled(true)
+                ->setRoles($userData['roles']);
 
-        $userManager->updateUser($user);
-
-        return $user;
+            $userManager->updateUser($user);
+        }
     }
 
     /**
